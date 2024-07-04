@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import styled from "styled-components";
 
 const sizes = {
   small: css`
@@ -60,5 +59,9 @@ const variations = {
   color: var(--color-brand-50);
   background-color: var(--color-brand-600);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  &:hover{
+    background-color: var(--color-brand-700);
+  }
 `;
 export default Button;
