@@ -14,9 +14,6 @@ const { data, error } = await supabase
 .from('cabins')
 .insert([newCabin])
 
-
-
-
 if(error){
     console.error(error);
     throw new Error("Cabin Could not be created")
