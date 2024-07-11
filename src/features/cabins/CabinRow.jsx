@@ -79,7 +79,7 @@ const queryClient = useQueryClient()
   >Delete</button>
   </div>
  </TableRow>
- {showForm && <CreateCabinForm />}
+ {showForm && <CreateCabinForm cabinToEdit={cabin} />}
  </>
   )
 }

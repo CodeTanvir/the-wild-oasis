@@ -10,18 +10,8 @@ import Textarea from "../../ui/Textarea";
 
 import toast from "react-hot-toast";
 
-function CreateCabinForm({cabinToEdit = {}}) {
- 
-  const {id: editId, ...editValues} = cabinToEdit;
-
-  const isEditSession = Boolean(editId)
-
- const {register, handleSubmit, reset, getValues, formState} = useForm({
-  defaultValues: isEditSession ? editValues : {}
- });
-
+function CreateCabinForm() {
   const queryClient = useQueryClient();
-
   const {mutate, isLoading:isCreating} = useMutation({
     mutationFn:  createCabin,
     onSuccess: ()=>{
@@ -32,7 +22,7 @@ function CreateCabinForm({cabinToEdit = {}}) {
     onError:(err)=> toast.error(err.message)
   });
 
- 
+  const {register, handleSubmit, reset, getValues, formState} = useForm();
 
   const {errors} = formState;
 
@@ -98,7 +88,7 @@ function CreateCabinForm({cabinToEdit = {}}) {
         <Button variation="secondary" type="reset">
           Cancel
         </Button>
-        <Button disabled={isCreating}>{isEditSession ? "Edit cabin" : "Create new Cabin"}</Button>
+        <Button disabled={isCreating}>Add cabin</Button>
       </FormRow>
     </Form>
   );
