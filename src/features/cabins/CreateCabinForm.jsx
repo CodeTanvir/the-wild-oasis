@@ -10,7 +10,7 @@ import Textarea from "../../ui/Textarea";
 
 import toast from "react-hot-toast";
 import { useCreateCabin } from "./useCreateCabin";
-import { useEditCabin } from "./useEditCabin";
+import { useUpdateCabin } from "./useUpdateCabin";
 
 function CreateCabinForm({cabinToEdit = {}}) {
    
@@ -25,19 +25,19 @@ function CreateCabinForm({cabinToEdit = {}}) {
 
 
  const {isCreating, createCabin} = useCreateCabin()
- const {isEditing, editCabin} = useEditCabin()
+ const {isUpdating, updateCabin} = useUpdateCabin()
 
 
  
 
- const isWorking = isCreating || isEditing
+ const isWorking = isCreating || isUpdating
 
   const {errors} = formState;
 
   function onSubmit(data){
     const image = typeof data.image === 'string' ? data.image : data.image[0]
 
-    if(isEditSession) editCabin({newCabinData: {...data, image}, id: editId},{
+    if(isEditSession) updateCabin({newCabinData: {...data, image}, id: editId},{
       onSuccess: (data) => {
         reset()
       }
