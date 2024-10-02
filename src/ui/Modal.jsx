@@ -49,8 +49,16 @@ const Button = styled.button`
   }
 `;
 
-function Modal(){
-  return <StyledModal>Modal</StyledModal>
+function Modal({children}){
+  return (
+  <Overlay>
+  <StyledModal>
+    <div>
+      {children}
+    </div>
+  </StyledModal>
+  </Overlay>
+  )
 }
 
 export default Modal
