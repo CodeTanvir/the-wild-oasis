@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { useCreateCabin } from "./useCreateCabin";
 import { useUpdateCabin } from "./useUpdateCabin";
 
-function CreateCabinForm({cabinToEdit = {}}) {
+function CreateCabinForm({cabinToEdit = {}, onCloseModal}) {
    
   const {id: editId, ...editValues} = cabinToEdit;
 
@@ -39,11 +39,15 @@ function CreateCabinForm({cabinToEdit = {}}) {
 
     if(isEditSession) updateCabin({newCabinData: {...data, image}, id: editId},{
       onSuccess: (data) => {
-        reset()
+        reset();
+        onCloseModal?.()
       }
     });
    else  createCabin({...data, image: image},{
-    onSuccess: ()=> reset()
+    onSuccess: ()=>{
+      reset();
+    onCloseModal?.();
+    }
    });
 }
   function onError(error){
@@ -103,7 +107,7 @@ function CreateCabinForm({cabinToEdit = {}}) {
 
       <FormRow>
         {/* type is an HTML attribute! */}
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" onClick={()=> onCloseModal?.()}>
           Cancel
         </Button>
         <Button disabled={isWorking}>{isEditSession ? "Edit cabin" : "Create new Cabin"}</Button>
