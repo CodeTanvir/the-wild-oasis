@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createEditCabin } from "../../services/apiCabins";
+
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
@@ -8,7 +7,7 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 
-import toast from "react-hot-toast";
+
 import { useCreateCabin } from "./useCreateCabin";
 import { useUpdateCabin } from "./useUpdateCabin";
 
@@ -86,8 +85,8 @@ function CreateCabinForm({cabinToEdit = {}, onCloseModal}) {
       <FormRow label="Discount" error={errors?.discount?.message}>
         <Input disabled={isWorking} type="number" id="discount" defaultValue={0} {...register("discount",{
           required:"This field is required",
-        validate: (value) => value < Number(getValues().regularPrice) || "Discount should be less than\
-        regular price"
+        validate: (value) => value < Number(getValues().regularPrice) || "Discount should be less than regular price"
+       
         })} />
       </FormRow>
 
